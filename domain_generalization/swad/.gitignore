@@ -1,0 +1,13 @@
+__pycache__
+tags
+train_output/
+.vim/
+.ipynb_checkpoints/
+*.log
+*.json
+swa_plane_results/
+features/
+perturb_results/
+*.pdf
+*.sh
+*.ipynb

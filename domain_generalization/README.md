@@ -12,7 +12,10 @@ diff baseline.py <(curl https://raw.githubusercontent.com/thuml/Transfer-Learnin
 
 I have also included Transfer-Learning-Library in this directory. You can find the examples in Transfer-Learning-Library/master/examples/domain_generalization/image_classification/ (e.g. baseline.py, irm.py)
 
-BatchFormer based on SWAD is provided in SWAD.
+In Transfer-Learning-Library/master/examples/domain_adaption/image_classification/, you can find corresponding code for Domain Adaption.
+
+
+BatchFormer based on SWAD is provided in swad.
 
 
 ## Experiment and Results
