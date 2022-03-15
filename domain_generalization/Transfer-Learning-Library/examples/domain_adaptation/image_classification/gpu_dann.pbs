@@ -1,0 +1,37 @@
+#!/bin/bash
+#PBS -P ZHIHOU
+#PBS -l select=1:ngpus=1:ncpus=6:mem=28GB
+#PBS -l walltime=48:00:00
+##PBS -q alloc-dt
+source activate pyt
+
+#env
+
+cd "$PBS_O_WORKDIR"
+
+#
+## ResNet50, Office31, Single Source
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office31 -d Office31 -s A -t W -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_A2W_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office31 -d Office31 -s D -t W -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_D2W_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office31 -d Office31 -s W -t D -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_W2D_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office31 -d Office31 -s A -t D -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_A2D_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office31 -d Office31 -s D -t A -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_D2A_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office31 -d Office31 -s W -t A -a resnet50 --epochs 20 --seed 1 --log logs/dann/Office31_W2A_g16 --add_bt 16
+#
+## ResNet50, Office-Home, Single Source
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Ar -t Cl -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Ar2Cl_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Ar -t Pr -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Ar2Pr_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Ar -t Rw -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Ar2Rw_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Cl -t Ar -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Cl2Ar_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Cl -t Pr -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Cl2Pr_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Cl -t Rw -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Cl2Rw_g16 --add_bt 16
+CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Pr -t Ar -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Pr2Ar_g16 --add_bt 16
+CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Pr -t Cl -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Pr2Cl_g16 --add_bt 16
+CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Pr -t Rw -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Pr2Rw_g16 --add_bt 16
+CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Rw -t Ar -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Rw2Ar_g16 --add_bt 16
+CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Rw -t Cl -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Rw2Cl_g16 --add_bt 16
+CUDA_VISIBLE_DEVICES=0 python dann.py data/office-home -d OfficeHome -s Rw -t Pr -a resnet50 --epochs 30 --seed 0 --log logs/dann/OfficeHome_Rw2Pr_g16 --add_bt 16
+##
+### ResNet101, VisDA-2017, Single Source
+#CUDA_VISIBLE_DEVICES=0 python dann.py data/visda-2017 -d VisDA2017 -s Synthetic -t Real -a resnet101 \
+#    --epochs 30 --seed 0 --per-class-eval --train-resizing cen.crop --log logs/dann/VisDA2017_g16 --add_bt 16

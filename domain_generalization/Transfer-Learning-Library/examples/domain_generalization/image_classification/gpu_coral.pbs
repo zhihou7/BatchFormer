@@ -1,0 +1,43 @@
+#!/bin/bash
+#PBS -P ZHIHOU
+#PBS -l select=1:ngpus=1:ncpus=6:mem=28GB
+#PBS -l walltime=24:00:00
+#PBS -q alloc-xxx
+source activate pyt
+
+#env
+
+cd "$PBS_O_WORKDIR"
+
+# ResNet50, PACS
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s A C S -t P -a resnet50 --freeze-bn --seed 0 --log logs/coral/PACS_P_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P C S -t A -a resnet50 --freeze-bn --seed 0 --log logs/coral/PACS_A_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P A S -t C -a resnet50 --freeze-bn --seed 0 --log logs/coral/PACS_C_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P A C -t S -a resnet50 --freeze-bn --seed 0 --log logs/coral/PACS_S_g16 --add_bt 16
+#
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s A C S -t P -a resnet50 --freeze-bn --seed 1 --log logs/coral/PACS_P_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P C S -t A -a resnet50 --freeze-bn --seed 1 --log logs/coral/PACS_A_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P A S -t C -a resnet50 --freeze-bn --seed 1 --log logs/coral/PACS_C_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P A C -t S -a resnet50 --freeze-bn --seed 1 --log logs/coral/PACS_S_g16 --add_bt 16
+#
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s A C S -t P -a resnet50 --freeze-bn --seed 2 --log logs/coral/PACS_P_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P C S -t A -a resnet50 --freeze-bn --seed 2 --log logs/coral/PACS_A_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P A S -t C -a resnet50 --freeze-bn --seed 2 --log logs/coral/PACS_C_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/PACS -d PACS -s P A C -t S -a resnet50 --freeze-bn --seed 2 --log logs/coral/PACS_S_g16 --add_bt 16
+
+# ResNet50, Office-Home
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Cl Rw -t Pr -a resnet50 --seed 0 --log logs/coral/OfficeHome_Pr_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Cl Pr -t Rw -a resnet50 --seed 0 --log logs/coral/OfficeHome_Rw_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Rw Pr -t Cl -a resnet50 --seed 0 --log logs/coral/OfficeHome_Cl_g16 --add_bt 16
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Cl Rw Pr -t Ar -a resnet50 --seed 0 --log logs/coral/OfficeHome_Ar_g16 --add_bt 16
+#
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Cl Rw -t Pr -a resnet50 --seed 1 --log logs/coral/OfficeHome_Pr
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Cl Pr -t Rw -a resnet50 --seed 1 --log logs/coral/OfficeHome_Rw
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Rw Pr -t Cl -a resnet50 --seed 1 --log logs/coral/OfficeHome_Cl
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Cl Rw Pr -t Ar -a resnet50 --seed 1 --log logs/coral/OfficeHome_Ar
+
+##
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Cl Rw -t Pr -a resnet50 --seed 2 --log logs/coral/OfficeHome_Pr
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Cl Pr -t Rw -a resnet50 --seed 2 --log logs/coral/OfficeHome_Rw
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Ar Rw Pr -t Cl -a resnet50 --seed 2 --log logs/coral/OfficeHome_Cl
+#CUDA_VISIBLE_DEVICES=0 python coral.py data/office-home -d OfficeHome -s Cl Rw Pr -t Ar -a resnet50 --seed 2 --log logs/coral/OfficeHome_Ar
