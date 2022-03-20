@@ -1,0 +1,36 @@
+---
+experiment:
+  name: labelembed/mitstates/
+dataset:
+  data_dir: mit-states
+  dataset: mitstates
+  splitname: compositional-split-natural
+model_params:
+  model: labelembed+
+  dropout: false
+  norm: false
+  nlayers: 2
+  fc_emb: 512,512
+  emb_dim: 300
+  emb_init: glove
+  eval_type: dist_fast
+  image_extractor: resnet18
+  train_only: true
+  static_inp: false
+  composition: add
+training:
+  batch_size: 512
+  eval_val_every: 2
+  load: 
+  lr: 5.0e-05
+  margin: 0.5
+  max_epochs: 2000
+  norm_family: imagenet
+  save_every: 10000
+  test_batch_size: 32
+  test_set: val
+  topk: 1
+  wd: 5.0e-05
+  workers: 8
+  update_features: false
+  freeze_features: false

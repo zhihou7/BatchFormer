@@ -1,0 +1,39 @@
+---
+experiment:
+  name: symnet/cgqa/
+dataset:
+  data_dir: cgqa
+  dataset: cgqa
+  splitname: compositional-split-natural
+model_params:
+  model: symnet
+  dropout: true
+  norm: true
+  nlayers: 3
+  fc_emb: 768,1024,1200
+  emb_dim: 300
+  emb_init: glove
+  image_extractor: resnet18
+loss:
+  lambda_cls_attr: 1.0
+  lambda_cls_obj: 1.0
+  lambda_trip: 0.5
+  lambda_sym: 0.01
+  lambda_axiom: 0.03
+training:
+  batch_size: 512
+  eval_val_every: 2
+  load: 
+  lr: 5.0e-05
+  lrg: 0.001
+  margin: 0.5
+  max_epochs: 2000
+  norm_family: imagenet
+  save_every: 10000
+  test_batch_size: 32
+  test_set: val
+  topk: 1
+  wd: 5.0e-05
+  workers: 8
+  update_features: false
+  freeze_features: false

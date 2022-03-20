@@ -1,0 +1,32 @@
+---
+experiment:
+  name: tmn/mitstates/
+dataset:
+  data_dir: mit-states
+  dataset: mitstates
+  splitname: compositional-split-natural
+model_params:
+  model: tmn
+  emb_init: glove
+  image_extractor: resnet18
+  num_negs: 600
+  embed_rank: 64
+  emb_dim: 16
+  nmods: 24
+training:
+  batch_size: 256
+  eval_val_every: 2
+  load: 
+  lr: 0.0001
+  lrg: 1.0e-06
+  margin: 0.5
+  max_epochs: 100
+  norm_family: imagenet
+  save_every: 10000
+  test_batch_size: 32
+  test_set: val
+  topk: 1
+  wd: 5.0e-05
+  workers: 8
+  update_features: true
+  freeze_features: false

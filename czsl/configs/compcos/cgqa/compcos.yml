@@ -1,0 +1,38 @@
+---
+experiment:
+  name: compcos/cgqa
+dataset:
+  data_dir: cgqa
+  dataset: cgqa
+  splitname: compositional-split-natural
+  open_world: true
+model_params:
+  model: compcos
+  dropout: true
+  norm: true
+  nlayers: 2
+  relu: false
+  fc_emb: 768,1024,1200
+  emb_dim: 300
+  emb_init: word2vec
+  image_extractor: resnet18
+  train_only: false
+  static_inp: false
+training:
+  batch_size: 128
+  load:
+  lr: 5.0e-05
+  lrg: 0.001
+  margin: 0.4
+  cosine_scale: 100
+  max_epochs: 300
+  norm_family: imagenet
+  save_every: 10000
+  test_batch_size: 64
+  test_set: val
+  topk: 1
+  wd: 5.0e-05
+  workers: 8
+  update_features: false
+  freeze_features: false
+  epoch_max_margin: 15

@@ -1,0 +1,42 @@
+---
+experiment:
+  name: aopp/utzappos/
+dataset:
+  data_dir: ut-zap50k
+  dataset: utzappos
+  splitname: compositional-split-natural
+model_params:
+  model: attributeop
+  emb_dim: 300
+  emb_init: glove
+  eval_type: dist_fast
+  image_extractor: resnet18
+  train_only: true
+  static_inp: false
+  composition: add
+loss:
+  lambda_aux: 1.0
+  lambda_comm: 1.0
+training:
+  batch_size: 512
+  eval_val_every: 2
+  load: 
+  lr: 5.0e-05
+  lrg: 0.001
+  margin: 0.5
+  max_epochs: 1000
+  norm_family: imagenet
+  save_every: 10000
+  test_batch_size: 32
+  test_set: val
+  topk: 1
+  wd: 5.0e-05
+  workers: 8
+  update_features: false
+  freeze_features: false
+extra:
+  lambda_attr: 0
+  lambda_obj: 0
+  lambda_sub: 0
+  graph: false
+  hardk: null
