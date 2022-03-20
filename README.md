@@ -1,6 +1,6 @@
 # BatchFormer: Learning to Explore Sample Relationships for Robust Representation Learning
 
-### Introduction
+## Introduction
 
 This is the official PyTorch implementation of BatchFormer for Long-Tailed Recognition, Domain Generalization, Compositional Zero-Shot Learning, Contrastive Learning.
 
@@ -8,7 +8,11 @@ This is the official PyTorch implementation of BatchFormer for Long-Tailed Recog
   <img src="rela_illu.png" width="320">
 </p>
 
-### Main Results
+<p align="center">
+Sample Relationship Exploration for Robust Representation Learning
+  </p>
+
+## Main Results
 
 ### Long-Tailed Recognition
 
@@ -191,7 +195,7 @@ This is the official PyTorch implementation of BatchFormer for Long-Tailed Recog
 5. Domain generalization by seeking flat minima. In NeurIPS, 2021.
 6. Learning graph embeddings for compositional zero-shot learning. In CVPR, 2021
 
-### PyTorch Code
+## PyTorch Code
 
 The proposed BatchFormer can be implemented with a few lines as follows,
 
@@ -208,7 +212,7 @@ The proposed BatchFormer can be implemented with a few lines as follows,
 
 
 
-### Citation
+## Citation
 If you find this repository helpful, please consider cite:
 
     @inproceedings{hou2022batch,
