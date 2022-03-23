@@ -129,10 +129,10 @@ class ResNet_s(nn.Module):
             self.encoder_layers = obtain_global_models(add_bt, 48)
             # self.encoder_layers = torch.nn.TransformerEncoderLayer(48, 1, 48, 0.5)
             import numpy as np
-            many_arr = np.zeros([100])
-            many_arr[:50] = 1.
-            self.many_shot_arr = many_arr.astype(np.float32)
-            self.many_shot_arr = torch.from_numpy(self.many_shot_arr)
+            # many_arr = np.zeros([100])
+            # many_arr[:50] = 1.
+            # self.many_shot_arr = many_arr.astype(np.float32)
+            # self.many_shot_arr = torch.from_numpy(self.many_shot_arr)
         if use_norm:
             self.linears = nn.ModuleList([NormedLinear(layer3_output_dim, num_classes) for _ in range(num_experts)])
         else:

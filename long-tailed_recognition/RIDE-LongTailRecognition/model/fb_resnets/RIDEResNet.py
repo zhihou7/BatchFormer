@@ -151,14 +151,14 @@ class ResNet(nn.Module):
             self.encoder_layers = obtain_global_models(add_bt, self.inplanes)
             import numpy as np
             import os
-            if 'DATASET_N' in os.environ and os.environ['DATASET_N'].startswith('ImageNet'):
-                print('load imagenet -----')
-                cls_num = np.load('/home/zhou9878/Code/RIDE-LongTailRecognition/cls_num.npy')
-            else:
-                print('load inature -----')
-                cls_num = np.load('/home/zhou9878/Code/RIDE-LongTailRecognition/obj_cls_ina.npy')
-            self.many_shot_arr = np.asarray(cls_num > 100).astype(np.float32)
-            self.many_shot_arr = torch.from_numpy(self.many_shot_arr)
+            # if 'DATASET_N' in os.environ and os.environ['DATASET_N'].startswith('ImageNet'):
+            #     print('load imagenet -----')
+            #     cls_num = np.load('cls_num.npy')
+            # else:
+            #     print('load inature -----')
+            #     cls_num = np.load('obj_cls_ina.npy')
+            # self.many_shot_arr = np.asarray(cls_num > 100).astype(np.float32)
+            # self.many_shot_arr = torch.from_numpy(self.many_shot_arr)
         self.use_dropout = True if dropout else False
 
         if self.use_dropout:
@@ -229,18 +229,18 @@ class ResNet(nn.Module):
             x = x.unsqueeze(1)
             x = self.encoder_layers(x)
             x = x.squeeze(1)
-            if self.add_global == 5:
-                self.many_shot_arr = self.many_shot_arr.to(x.device)
-                many_idx = self.many_shot_arr[target]
-                many_idx = many_idx.unsqueeze(-1)
-                # few_idx = 1 - many_idx
-                x = old_x * many_idx + (x) * (1-many_idx)    # better for many_idx
-            elif self.add_global == 10:
-                self.many_shot_arr = self.many_shot_arr.to(x.device)
-                many_idx = self.many_shot_arr[target]
-                many_idx = many_idx.unsqueeze(-1)
-                # few_idx = 1 - many_i
-                x = old_x * (1 - many_idx) + (x) * many_idx   # better for few_idx
+            # if self.add_bt == 5:
+            #     self.many_shot_arr = self.many_shot_arr.to(x.device)
+            #     many_idx = self.many_shot_arr[target]
+            #     many_idx = many_idx.unsqueeze(-1)
+            #     # few_idx = 1 - many_idx
+            #     x = old_x * many_idx + (x) * (1-many_idx)    # better for many_idx
+            # elif self.add_bt == 10:
+            #     self.many_shot_arr = self.many_shot_arr.to(x.device)
+            #     many_idx = self.many_shot_arr[target]
+            #     many_idx = many_idx.unsqueeze(-1)
+            #     # few_idx = 1 - many_i
+            #     x = old_x * (1 - many_idx) + (x) * many_idx   # better for few_idx
             if self.add_bt == 22:
                 x = torch.cat([x, old_x], dim=0)
         self.feat.append(x)

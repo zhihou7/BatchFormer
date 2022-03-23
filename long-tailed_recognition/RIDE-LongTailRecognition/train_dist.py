@@ -48,7 +48,7 @@ def main(config, args):
 
     print(config['name'])
     import os
-    os.environ['DATASET_N'] = config['name']
+    # os.environ['DATASET_N'] = config['name']
     # build model architecture, then print to console
     model = config.init_obj('arch', module_arch)
     logger.info(model)
