@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is the official PyTorch implementation of BatchFormer for Long-Tailed Recognition, Domain Generalization, Compositional Zero-Shot Learning, Contrastive Learning.
+This is the official PyTorch implementation of [BatchFormer](https://arxiv.org/abs/2203.01522) for Long-Tailed Recognition, Domain Generalization, Compositional Zero-Shot Learning, Contrastive Learning.
 
 <p align="center">
   <img src="rela_illu.png" width="320">
