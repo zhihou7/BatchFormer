@@ -153,7 +153,7 @@ Here, we provide the pretrained MoCo-V3 model corresponding to [this strategy](h
     <tr><td align="left">+BatchFormer</td>
 <td align="center"><b>83.7</b></td>
 <td align="center"><b>76.9</b></td>
-<td align="center"><b>64.26</b></td>
+<td align="center"><b>64.3</b></td>
 <td align="center"><b>44.8</b></td>
 </tbody></table>
 
