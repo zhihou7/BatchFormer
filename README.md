@@ -115,8 +115,8 @@ Sample Relationship Exploration for Robust Representation Learning
 </tr>
 <tr><td align="left">+BatchFormer</td>
 <td align="center">200</td>
-<td align="center"><b>74.1</b></td>
-<td align="center">download</td>
+<td align="center"><b>68.4</b></td>
+  <td align="center"><a href="https://cloudstor.aarnet.edu.au/plus/s/nnepE6cPmEPMOkv">download</a></td>
     
 <tr><td align="left">MoCo-v3[4]</td>
 <td align="center">100</td>
@@ -124,9 +124,11 @@ Sample Relationship Exploration for Robust Representation Learning
 </tr>
 <tr><td align="left">+BatchFormer</td>
 <td align="center">100</td>
-<td align="center"><b>69.9</b></td>
-    <td align="center">download</td>
+<td align="center"><b>69.6</b></td>
+    <td align="center"><a href="https://cloudstor.aarnet.edu.au/plus/s/IHxiZW3I8iiDS5u">download</a></td>
 </tbody></table>
+
+Here, we provide the pretrained MoCo-V3 model corresponding to [this strategy](https://github.com/zhihou7/BatchFormer/blob/cc7a060c6395cb1dc8a7c577df77f52a44deaf9d/moco-v3/moco/builder.py#L139).
 
 #### Domain Generalization
 
