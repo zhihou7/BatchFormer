@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is the official PyTorch implementation of BatchFormer for Long-Tailed Recognition, Domain Generalization, Compositional Zero-Shot Learning, Contrastive Learning.
+This is the official PyTorch implementation of [BatchFormer](https://arxiv.org/abs/2203.01522) for Long-Tailed Recognition, Domain Generalization, Compositional Zero-Shot Learning, Contrastive Learning.
 
 <p align="center">
   <img src="rela_illu.png" width="320">
@@ -73,6 +73,29 @@ Sample Relationship Exploration for Robust Representation Learning
 <td align="center"><b>42.1</b></td>
 </tbody></table>
 
+Here, we demonstrate the result on one-stage RIDE (ResNext-50)
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom"></th>
+<th valign="bottom">All</th>
+<th valign="bottom">Many</th>
+<th valign="bottom">Medium</th>
+<th valign="bottom">Few</th>
+
+<!-- TABLE BODY -->
+<tr><td align="left">RIDE(3 experts)*</td>
+<td align="center">55.9</td>
+<td align="center">67.3</td>
+<td align="center">52.8</td>
+<td align="center">34.6</td>
+</tr>
+    <tr><td align="left">+BatchFormer</td>
+<td align="center"><b>56.5</b></td>
+<td align="center">66.6</td>
+<td align="center"><b>54.2</b></td>
+<td align="center"><b>36.0</b></td>
+</tbody></table>
 
 
 ##### iNaturalist 2018
@@ -115,8 +138,8 @@ Sample Relationship Exploration for Robust Representation Learning
 </tr>
 <tr><td align="left">+BatchFormer</td>
 <td align="center">200</td>
-<td align="center"><b>74.1</b></td>
-<td align="center">download</td>
+<td align="center"><b>68.4</b></td>
+  <td align="center"><a href="https://cloudstor.aarnet.edu.au/plus/s/nnepE6cPmEPMOkv">download</a></td>
     
 <tr><td align="left">MoCo-v3[4]</td>
 <td align="center">100</td>
@@ -124,9 +147,11 @@ Sample Relationship Exploration for Robust Representation Learning
 </tr>
 <tr><td align="left">+BatchFormer</td>
 <td align="center">100</td>
-<td align="center"><b>69.9</b></td>
-    <td align="center">download</td>
+<td align="center"><b>69.6</b></td>
+    <td align="center"><a href="https://cloudstor.aarnet.edu.au/plus/s/IHxiZW3I8iiDS5u">download</a></td>
 </tbody></table>
+
+Here, we provide the pretrained MoCo-V3 model corresponding to [this strategy](https://github.com/zhihou7/BatchFormer/blob/cc7a060c6395cb1dc8a7c577df77f52a44deaf9d/moco-v3/moco/builder.py#L139).
 
 #### Domain Generalization
 
@@ -151,7 +176,7 @@ Sample Relationship Exploration for Robust Representation Learning
     <tr><td align="left">+BatchFormer</td>
 <td align="center"><b>83.7</b></td>
 <td align="center"><b>76.9</b></td>
-<td align="center"><b>64.26</b></td>
+<td align="center"><b>64.3</b></td>
 <td align="center"><b>44.8</b></td>
 </tbody></table>
 
@@ -185,6 +210,29 @@ Sample Relationship Exploration for Robust Representation Learning
 <td align="center"><b>15.5</b></td>
 </tbody></table>
 
+#### Few-Shot Learning
+Experiments on CUB.
+
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom"></th>
+<th valign="bottom">Unseen</th>
+<th valign="bottom">Seen</th>
+<th valign="bottom">Harmonic mean</th>
+
+<!-- TABLE BODY -->
+<tr><td align="left">CUB[7]*</td>
+<td align="center">67.5</td>
+<td align="center">65.1</td>
+<td align="center">66.3</td>
+</tr>
+    <tr><td align="left">+BatchFormer</td>
+<td align="center"><b>68.2</b></td>
+<td align="center"><b>65.8</b></td>
+<td align="center"><b>67.0</b></td>
+</tbody></table>
+
 
 #### Reference
 
@@ -194,6 +242,7 @@ Sample Relationship Exploration for Robust Representation Learning
 4. An empirical study of training self-supervised vision transformers. In CVPR, 2021
 5. Domain generalization by seeking flat minima. In NeurIPS, 2021.
 6. Learning graph embeddings for compositional zero-shot learning. In CVPR, 2021
+7. Contrastive learning based hybrid networks for long- tailed image classification. In CVPR, 2021
 
 ## PyTorch Code
 
