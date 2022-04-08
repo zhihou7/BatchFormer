@@ -12,6 +12,8 @@ This is the official PyTorch implementation of [BatchFormer](https://arxiv.org/a
 Sample Relationship Exploration for Robust Representation Learning
   </p>
 
+**Please also refer to [BatchFormerV2](https://arxiv.org/abs/2204.01254), in which we introduce a BatchFormerV2 module for vision Transformers.**
+
 ## Main Results
 
 ### Long-Tailed Recognition
