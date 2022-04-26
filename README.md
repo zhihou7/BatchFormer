@@ -12,6 +12,8 @@ This is the official PyTorch implementation of [BatchFormer](https://arxiv.org/a
 Sample Relationship Exploration for Robust Representation Learning
   </p>
 
+**Please also refer to [BatchFormerV2](https://arxiv.org/abs/2204.01254), in which we introduce a BatchFormerV2 module for vision Transformers.**
+
 ## Main Results
 
 ### Long-Tailed Recognition
@@ -243,6 +245,8 @@ Experiments on CUB.
 5. Domain generalization by seeking flat minima. In NeurIPS, 2021.
 6. Learning graph embeddings for compositional zero-shot learning. In CVPR, 2021
 7. Contrastive learning based hybrid networks for long- tailed image classification. In CVPR, 2021
+
+
 
 ## PyTorch Code
 
