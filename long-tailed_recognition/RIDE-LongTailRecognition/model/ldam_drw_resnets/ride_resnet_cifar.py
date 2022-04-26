@@ -185,6 +185,13 @@ class ResNet_s(nn.Module):
             out = out.unsqueeze(1)
             out = self.encoder_layers(out)
             out = out.squeeze(1)
+        if self.add_bt in [32, 33] and self.training:
+            out = (self.linears[ind])(out)
+            out = out * self.s
+
+            old_x = (self.linears[ind])(old_x)
+            old_x = old_x * self.s
+            return out, old_x
         out = (self.linears[ind])(out)
         out = out * self.s
         return out
@@ -203,10 +210,28 @@ class ResNet_s(nn.Module):
         else:
             use_experts = self.use_experts
 
-        for ind in use_experts:
-            outs.append(self._separate_part(out, ind))
-        self.feat = torch.stack(self.feat, dim=1)
-        self.feat_before_GAP = torch.stack(self.feat_before_GAP, dim=1)
+        if self.add_bt in [32, 33] and self.training:
+            outs_old = []
+            for ind in use_experts:
+                out_x, out_old_x = self._separate_part(out, ind, target)
+                outs.append(out_x)
+                outs_old.append(out_old_x)
+            final_out_old = torch.stack(outs_old, dim=1).mean(dim=1)
+            final_logits_old = torch.stack(outs_old, dim=1)
+            self.feat = torch.stack(self.feat, dim=1)
+            self.feat_before_GAP = torch.stack(self.feat_before_GAP, dim=1)
+            return {
+                "output":torch.stack(outs, dim=1).mean(dim=1),
+                "output_old": torch.stack(outs_old, dim=1).mean(dim=1),
+                "logits": self.logits,
+                "logits_old": outs_old,
+            }
+
+        else:
+            for ind in use_experts:
+                outs.append(self._separate_part(out, ind))
+            self.feat = torch.stack(self.feat, dim=1)
+            self.feat_before_GAP = torch.stack(self.feat_before_GAP, dim=1)
         final_out = torch.stack(outs, dim=1).mean(dim=1)
         return final_out
 

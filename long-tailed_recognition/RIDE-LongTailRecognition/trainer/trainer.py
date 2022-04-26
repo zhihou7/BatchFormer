@@ -135,15 +135,16 @@ class Trainer(BaseTrainer):
                         if isinstance(teacher, dict):
                             teacher = teacher["output"]
                     if self.add_bt in [32, 33]:
-                        # we do not use this
+                        # This is similar to shared classifier.
+                        # For CIFAR100-LT, we use the shared classifier.
                         old_output = output
                         loss1, _ = self.cal_loss(extra_info, None, {"logits": output['logits_old'] if 'logits_old' in output else None,
                                                                    "output": output["output_old"]}, target, teacher)
                         loss, output = self.cal_loss(extra_info, None, output, target, teacher)
                         if type(old_output) == dict and 'feat' not in old_output:
                             loss = loss + loss1
-                            if self.add_bt == 33:
-                                loss = loss + loss1
+                            if self.add_bt == 32:
+                                loss = loss*0.01 + loss1
                         else:
                             loss = loss + loss1
                     else:
