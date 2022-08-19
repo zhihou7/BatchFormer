@@ -274,5 +274,11 @@ If you find this repository helpful, please consider cite:
         booktitle={CVPR},
         year={2022}
     }
+    @article{hou2022batchformerv2,
+       title={BatchFormerV2: Exploring Sample Relationships for Dense Representation Learning},
+       author={Hou, Zhi and Yu, Baosheng and Wang, Chaoyue and Zhan, Yibing and Tao, Dacheng},
+       journal={arXiv preprint arXiv:2204.01254},
+       year={2022}
+    }
 
 Feel free to contact "zhou9878 at uni dot sydney dot edu dot au" if you have any questions.
