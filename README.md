@@ -14,6 +14,11 @@ Sample Relationship Exploration for Robust Representation Learning
 
 **Please also refer to [BatchFormerV2](https://arxiv.org/abs/2204.01254), in which we introduce a BatchFormerV2 module for vision Transformers.**
 
+
+<p align="center">
+  <img src="BT_illu_dim.png" width="480">
+</p>
+
 ## Main Results
 
 ### Long-Tailed Recognition
@@ -52,7 +57,7 @@ Sample Relationship Exploration for Robust Representation Learning
 <td align="center">64.3</td>
 <td align="center"><b>51.4</b></td>
 <td align="center"><b>35.1</b></td>
-    
+
 <tr><td align="left">PaCo[2]</td>
 <td align="center">-</td>
 <td align="center">-</td>
@@ -124,6 +129,117 @@ Here, we demonstrate the result on one-stage RIDE (ResNext-50)
 <td align="center"><b>75.8</b></td>
 </tbody></table>
 
+
+#### Object Detection (V2)
+
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom"></th>
+<th valign="bottom">AP</th>
+<th valign="bottom">AP50</th>
+<th valign="bottom">AP75</th>
+<th valign="bottom">APS</th>
+<th valign="bottom">APM</th>
+<th valign="bottom">APL</th>
+<!-- TABLE BODY -->
+<tr><td align="left">DETR</td>
+<td align="center">34.8</td>
+<td align="center">55.6</td>
+<td align="center">35.8</td>
+<td align="center">14.0</td>
+<td align="center">37.2</td>
+<td align="center">54.6</td>
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>36.9</b></td>
+<td align="center"><b>57.9</b></td>
+<td align="center"><b>38.5</b></td>
+<td align="center"><b>15.6</b></td>
+<td align="center"><b>40.0</b></td>
+<td align="center"><b>55.9</b></td>
+
+<tr><td align="left">Conditional DETR</td>
+<td align="center">40.9</td>
+<td align="center">61.8</td>
+<td align="center">43.3</td>
+<td align="center">20.8</td>
+<td align="center">44.6</td>
+<td align="center">59.2</td>
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>42.3</b></td>
+<td align="center"><b>63.2</b></td>
+<td align="center"><b>45.1</b></td>
+<td align="center"><b>21.9</b></td>
+<td align="center"><b>46.0</b></td>
+<td align="center"><b>60.7</b></td>
+
+<tr><td align="left">Deformable DETR</td>
+<td align="center">43.8</td>
+<td align="center">62.6</td>
+<td align="center">47.7</td>
+<td align="center">26.4</td>
+<td align="center">47.1</td>
+<td align="center">58.0</td>
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>45.5</b></td>
+<td align="center"><b>64.3</b></td>
+<td align="center"><b>49.8</b></td>
+<td align="center"><b>28.3</b></td>
+<td align="center"><b>48.6</b></td>
+<td align="center"><b>59.4</b></td>
+</tbody></table>
+
+The backbone is ResNet-50. The training epoch is 50.
+
+
+#### Panoptic segmentation (V2)
+
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom"></th>
+<th valign="bottom">PQ</th>
+<th valign="bottom">SQ</th>
+<th valign="bottom">RQ</th>
+<th valign="bottom">PQ(th)</th>
+<th valign="bottom">SQ(th)</th>
+<th valign="bottom">RQ(th)</th>
+<th valign="bottom">PQ(st)</th>
+<th valign="bottom">SQ(st)</th>
+<th valign="bottom">RQ(st)</th>
+<th valign="bottom">AP</th>
+<!-- TABLE BODY -->
+<tr><td align="left">DETR</td>
+<td align="center">43.4</td>
+<td align="center">79.3</td>
+<td align="center">53.8</td>
+<td align="center">48.2</td>
+<td align="center">79.8</td>
+<td align="center">59.5</td>
+<td align="center">36.3</td>
+<td align="center">78.5</td>
+<td align="center">45.3</td>
+<td align="center">31.1</td>
+
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>45.1</b></td>
+<td align="center"><b>80.3</b></td>
+<td align="center"><b>55.3</b></td>
+<td align="center"><b>50.5</b></td>
+<td align="center"><b>81.1</b></td>
+<td align="center"><b>61.5</b></td>
+
+<td align="center"><b>37.1</b></td>
+<td align="center"><b>79.1</b></td>
+<td align="center"><b>46.0</b></td>
+<td align="center"><b>33.4</b></td>
+</tbody></table>
+
+
 #### Contrastive Learning
 <table><tbody>
 <!-- START TABLE -->
@@ -142,7 +258,7 @@ Here, we demonstrate the result on one-stage RIDE (ResNext-50)
 <td align="center">200</td>
 <td align="center"><b>68.4</b></td>
   <td align="center"><a href="https://cloudstor.aarnet.edu.au/plus/s/nnepE6cPmEPMOkv">download</a></td>
-    
+
 <tr><td align="left">MoCo-v3[4]</td>
 <td align="center">100</td>
 <td align="center">68.9</td>
@@ -235,6 +351,40 @@ Experiments on CUB.
 <td align="center"><b>67.0</b></td>
 </tbody></table>
 
+
+#### Image Classification (V2)
+
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom"></th>
+<th valign="bottom">Top-1</th>
+<th valign="bottom">Top-5</th>
+<!-- TABLE BODY -->
+<tr><td align="left">DeiT-T</td>
+<td align="center">72.2</td>
+<td align="center">91.1</td>
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>72.7</b></td>
+<td align="center"><b>91.5</b></td>
+
+<tr><td align="left">DeiT-S</td>
+<td align="center">79.8</td>
+<td align="center">95.0</td>
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>80.4</b></td>
+<td align="center"><b>95.2</b></td>
+
+<tr><td align="left">DeiT-B</td>
+<td align="center">81.7</td>
+<td align="center">95.5</td>
+</tr>
+    <tr><td align="left">+BatchFormerV2</td>
+<td align="center"><b>82.2</b></td>
+<td align="center"><b>95.8</b></td>
+</tbody></table>
 
 #### Reference
 
