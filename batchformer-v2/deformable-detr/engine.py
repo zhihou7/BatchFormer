@@ -40,8 +40,8 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
     # for samples, targets in metric_logger.log_every(data_loader, print_freq, header):
     for _ in metric_logger.log_every(range(len(data_loader)), print_freq, header):
         outputs = model(samples)
-        if len(outputs['pred_logits']) > len(targets):
-            targets = targets + targets
+        if len(outputs['pred_logits']) > len(targets): # Here, we need to set the labels for the batchformerv2 stream/batch
+            targets = targets + targets # targets is a list
         loss_dict = criterion(outputs, targets)
         weight_dict = criterion.weight_dict
         losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)

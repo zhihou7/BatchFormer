@@ -7,6 +7,10 @@ This repository has changed a few lines of the core code based on Deformable DET
 diff models/deformable_transformer.py <(curl https://raw.githubusercontent.com/fundamentalvision/Deformable-DETR/main/models/deformable_transformer.py)
 ```
 
+I mainly changes the two parts of the code: 
+1. apply batchformer t get two streams, https://github.com/zhihou7/BatchFormer/blob/e22f5ff895b04d10f3aa4e745f9a226f3d9b7641/batchformer-v2/models/deformable_transformer.py#L278
+2. set the labels for batchformerv2 stream. https://github.com/zhihou7/BatchFormer/blob/e22f5ff895b04d10f3aa4e745f9a226f3d9b7641/batchformer-v2/engine.py#L43
+
 ## Main Results
 
 | Method      | AP |

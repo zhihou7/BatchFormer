@@ -275,14 +275,14 @@ class DeformableTransformerEncoder(nn.Module):
 
             if i in self.insert_idx and self.bf is not None and self.bf_idx in [1] and (self.training or self.eval_bf):
                 old_output = output
-                if i != self.insert_idx[0]:
-                    old_output = output[ :len(output)//2, :, :]
-                    output = output[len(output)//2:, :, :]
-                output = self.bf[i](output)
+                if i != self.insert_idx[0]: # If this is not the first layer, we split the batch into two streams because we have concatenate the two streams.
+                    old_output = output[ :len(output)//2, :, :]  # stream without batchformerv2
+                    output = output[len(output)//2:, :, :] # strea with batchformerv2
+                output = self.bf[i](output) # if this is th first layer, we apply the batchformerv2 on the batch. then concatenate old_output and output
                 if self.training:
                     output = torch.cat([old_output, output], dim=0)
-                if i == self.insert_idx[0] and self.training:
-                    pos = torch.cat([pos, pos], dim=0)
+                if i == self.insert_idx[0] and self.training: # for other variables, we just share it i the next modules. We thus repeat it.
+                    pos = torch.cat([pos, pos], dim=0) 
                     reference_points = torch.cat([reference_points, reference_points], dim=0)
                     padding_mask = torch.cat([padding_mask, padding_mask], dim=0)
             elif i in self.insert_idx and self.bf is not None and self.bf_idx == 7 and self.training:
