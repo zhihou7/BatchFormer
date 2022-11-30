@@ -130,16 +130,20 @@ class MoCo(nn.Module):
         # the default value is 1, however, we find all choice achieves similar results.
         if self.add_bf in [1, 34, 36]:
             N = len(q1) // 2
-            loss = self.contrastive_loss(q1[:N], k2[:N]) + self.contrastive_loss(q1[:N], k2[N:]) + self.contrastive_loss(q1[N:], k2[:N]) + self.contrastive_loss(q1[N:], k2[:N]) + \
-                   self.contrastive_loss(q2[:N], k1[:N]) + self.contrastive_loss(q2[:N], k1[N:]) + self.contrastive_loss(q2[:N], k1[:N]) + self.contrastive_loss(q2[:N], k1[N:])
-            # emperically, all those strategies are valid and the model achieves best performance when add_bf is 1.
+            # self.contrastive_loss(q1, k2) + self.contrastive_loss(q2, k1) 
+            # this term is following the original setting: 
+            # self.contrastive_loss(q1[:N], k2[:N]) + self.contrastive_loss(q2[:N], k1[:N]) # original moco loss
+            # self.contrastive_loss(q1[N:], k2[N:]) + self.contrastive_loss(q2[N:], k1[N:]) # with batchformer 
+            loss = self.contrastive_loss(q1[:N], k2[:N]) + self.contrastive_loss(q1[:N], k2[N:]) + self.contrastive_loss(q1[N:], k2[:N]) + self.contrastive_loss(q1[N:], k2[N:]) + \
+                   self.contrastive_loss(q2[:N], k1[:N]) + self.contrastive_loss(q2[:N], k1[N:]) + self.contrastive_loss(q2[N:], k1[:N]) + self.contrastive_loss(q2[N:], k1[N:])
+            # emperically, all those strategies are valid and the model achieves slightly better performance when add_bf is 1.
             if self.add_bf in [1, 34]:
                 return loss
             elif self.add_bf == 37:
                 loss += (self.contrastive_loss(q1[:N], q1[N:].detach()) + self.contrastive_loss(q2[:N], q2[N:].detach()))
                 return loss / 5.
             else:
-                return loss / 4
+                return loss / 4 # considering the number of losses increases
         else:
             return self.contrastive_loss(q1, k2) + self.contrastive_loss(q2, k1)
 
