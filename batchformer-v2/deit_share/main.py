@@ -165,10 +165,10 @@ def get_args_parser():
     # distributed training parameters
     parser.add_argument('--world_size', default=1, type=int,
                         help='number of distributed processes')
-    parser.add_argument('--add_global', default=0, type=int,
-                        help='add_global')
+    parser.add_argument('--add_bt', default=0, type=int,
+                        help='add_bt')
     parser.add_argument('--eval_global', default=0, type=int,
-                        help='eval_global')
+                        help='eval_global') # This is for evaluation with a mini-batch
     parser.add_argument('--dropout', default=0., type=float,
                         help='dropout')
     parser.add_argument('--exp_id', default="", type=str,
@@ -190,14 +190,13 @@ def get_args_parser():
                         help='start_bt_epoch: start bt layer index')
     parser.add_argument('--insert_idx', action='append', type=int,
                         help='insert idx list')
-    parser.add_argument('--small_seq', action='store_true',)
     parser.add_argument('--all_patches', action='store_true',)
     parser.add_argument('--drop_path_bt', default=0., type=float)
     parser.add_argument('--not_cls_token', action='store_true'),
     parser.add_argument('--cls_token_only', action='store_true'),
     parser.add_argument('--shared_bt', default=1, type=int,),
     parser.add_argument('--empty_bt', default=0, type=int,),
-    parser.add_argument('--add_norm_bt', default=0, type=int,),
+    parser.add_argument('--add_norm_bt', default=0, type=int,), # This is to add BT in the last layer (normalization)
     parser.add_argument('--add_mlp_bt', default=0, type=int,),
     parser.add_argument('--mlp_enc', default=0, type=int,),
     parser.add_argument('--no_grad_bt', default=0, type=int,),
@@ -206,7 +205,7 @@ def get_args_parser():
     parser.add_argument('--mlp_decay', default=0., type=float,
                        help='drop_patch')
     parser.add_argument('--bt_lr', default=0.5, type=float,)
-    parser.add_argument('--balanced_softmax', action='store_true',)
+    parser.add_argument('--balanced_softmax', action='store_true',) # This is for the experiments on Long-Tailed Recognition
     parser.add_argument('--bt_atten_drop', default=0.5, type=float)
 
     parser.add_argument('--skip_bt', action='store_true',)
@@ -305,23 +304,23 @@ def main(args):
     optimizer1 = create_bt_optimizer(args, model, bt_decay=args.bt_decay)
     lr_scheduler1, _ = create_scheduler(args, optimizer1)
 
-    if args.add_global:
-        from bt import TransformerDecorator1, BlockBF, BlockWrap32,BlockWrap, BlockWrapDebug
-        encoder_global = TransformerDecorator1(args.add_global, model.num_features, args.eval_global,
-                                               small_seq=args.small_seq, args=args, drop_path=args.drop_path_bt)
+    if args.add_bt:
+        from bt import TransformerDecorator1, BlockBF, BlockWrap32
+        encoder_global = TransformerDecorator1(args.add_bt, model.num_features, args.eval_global,
+                                               args=args, drop_path=args.drop_path_bt)
 
-
-        if args.add_global in [1]:
+        if args.add_bt in [1]:
             # This is for the last layer
             res_blocks = []
             for i, block in enumerate(model.blocks):
                 if args.no_fp16_bt and args.no_fp16_bt not in [4]:
+                    # This is for ease nan
                     res_blocks.append(BlockWrap32(block, args.no_fp16_bt))
                 else:
                     res_blocks.append(block)
             model.blocks = torch.nn.Sequential(*res_blocks)
             model.norm = torch.nn.Sequential(model.norm, encoder_global)
-        elif args.add_global in [3]:
+        elif args.add_bt in [3]:
             # for insert into a single layer
             res_blocks = []
             drop_rate_list = [args.drop_path_bt]*(len(model.blocks)+1)
@@ -336,22 +335,22 @@ def main(args):
                     res_blocks.append(block)
                 if i in insert_list:
                     if not args.shared_bt:
-                        encoder_global = TransformerDecorator1(args.add_global, model.num_features, args.eval_global,
-                                                           small_seq=args.small_seq, args=args, drop_path=drop_rate_list[i])
+                        encoder_global = TransformerDecorator1(args.add_bt, model.num_features, args.eval_global,
+                                                           args=args, drop_path=drop_rate_list[i])
                     res_blocks.append(encoder_global)
             model.blocks = torch.nn.Sequential(*res_blocks)
             if args.add_norm_bt:
                 if not args.shared_bt:
-                    encoder_global = TransformerDecorator1(args.add_global, model.num_features, args.eval_global,
-                                                           small_seq=args.small_seq, args=args, drop_path=args.drop_path_bt)
+                    encoder_global = TransformerDecorator1(args.add_bt, model.num_features, args.eval_global,
+                                                        args=args, drop_path=args.drop_path_bt)
                 model.norm = torch.nn.Sequential(model.norm, encoder_global)
-        elif args.add_global in [2]:
+        elif args.add_bt in [2]:
             # This is for multiple layers
             # 61, 62 is for half batch
             # model.norm = torch.nn.Sequential(model.norm, encoder_global)
             res_blocks = []
-            first_enc = TransformerDecorator1(args.add_global, model.num_features, args.eval_global,
-                                            small_seq=args.small_seq, args=args, first_layer=True, drop_path=args.drop_path_bt)
+            first_enc = TransformerDecorator1(args.add_bt, model.num_features, args.eval_global,
+                                            args=args, first_layer=True, drop_path=args.drop_path_bt)
             old_enc = first_enc.encoder_layers
             del old_enc
             first_enc.encoder_layers = encoder_global.encoder_layers
@@ -371,14 +370,14 @@ def main(args):
                         first_enc = None
                     else:
                         if not args.shared_bt:
-                            encoder_global = TransformerDecorator1(args.add_global, model.num_features, args.eval_global,
-                                                                   small_seq=args.small_seq, args=args, drop_path=args.drop_path_bt)
+                            encoder_global = TransformerDecorator1(args.add_bt, model.num_features, args.eval_global,
+                                                                    args=args, drop_path=args.drop_path_bt)
                         res_blocks.append(encoder_global)
             # model.norm = torch.nn.Identity()
             if args.add_norm_bt:
                 if not args.shared_bt:
-                    encoder_global = TransformerDecorator1(args.add_global, model.num_features, args.eval_global,
-                                                           small_seq=args.small_seq, args=args, drop_path=args.drop_path_bt)
+                    encoder_global = TransformerDecorator1(args.add_bt, model.num_features, args.eval_global,
+                                                        args=args, drop_path=args.drop_path_bt)
 
                 model.norm = torch.nn.Sequential(model.norm, encoder_global)
             model.blocks = torch.nn.Sequential(*res_blocks)
@@ -435,6 +434,7 @@ def main(args):
 
         model.load_state_dict(checkpoint_model, strict=False)
     if args.add_mlp_bt:
+        from bt import MLPDecorder
         model.pre_logits = MLPDecorder(model.num_features, 4096, skip_mlp=args.skip_bt)
 
     print(model)
