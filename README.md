@@ -142,6 +142,8 @@ Here, we demonstrate the result on one-stage RIDE (ResNext-50)
 <th valign="bottom">APS</th>
 <th valign="bottom">APM</th>
 <th valign="bottom">APL</th>
+<th valign="bottom">Model</th>
+
 <!-- TABLE BODY -->
 <tr><td align="left">DETR</td>
 <td align="center">34.8</td>
@@ -158,6 +160,8 @@ Here, we demonstrate the result on one-stage RIDE (ResNext-50)
 <td align="center"><b>15.6</b></td>
 <td align="center"><b>40.0</b></td>
 <td align="center"><b>55.9</b></td>
+<td align="center"><a href="https://unisydneyedu-my.sharepoint.com/:u:/g/personal/zhou9878_uni_sydney_edu_au/EUn-InXA-ClMpGaN2emuwpgBarc-_B-IYlYuKs6dvwVn8g?e=dzmX8l">download</a></td>
+
 
 <tr><td align="left">Conditional DETR</td>
 <td align="center">40.9</td>
@@ -174,6 +178,9 @@ Here, we demonstrate the result on one-stage RIDE (ResNext-50)
 <td align="center"><b>21.9</b></td>
 <td align="center"><b>46.0</b></td>
 <td align="center"><b>60.7</b></td>
+<td align="center"><a href="https://unisydneyedu-my.sharepoint.com/:u:/g/personal/zhou9878_uni_sydney_edu_au/EX2ulrdzhQBFhOr9mYyLCq0BFONL8IV4QFltr1Sn5RJCcQ?e=cXR2DL">download</a></td>
+
+
 
 <tr><td align="left">Deformable DETR</td>
 <td align="center">43.8</td>
@@ -190,6 +197,9 @@ Here, we demonstrate the result on one-stage RIDE (ResNext-50)
 <td align="center"><b>28.3</b></td>
 <td align="center"><b>48.6</b></td>
 <td align="center"><b>59.4</b></td>
+<td align="center"><a href="https://unisydneyedu-my.sharepoint.com/:f:/g/personal/zhou9878_uni_sydney_edu_au/Em284ufvPkBHi5Eh_vbM4_ABP3c4eXPg_RANRfos2VmO8Q?e=2PhkUs">download</a></td>
+
+
 </tbody></table>
 
 The backbone is ResNet-50. The training epoch is 50.
