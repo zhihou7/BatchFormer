@@ -133,7 +133,10 @@ class MoCo(nn.Module):
             # self.contrastive_loss(q1, k2) + self.contrastive_loss(q2, k1) 
             # this term is following the original setting: 
             # self.contrastive_loss(q1[:N], k2[:N]) + self.contrastive_loss(q2[:N], k1[:N]) # original moco loss
-            # self.contrastive_loss(q1[N:], k2[N:]) + self.contrastive_loss(q2[N:], k1[N:]) # with batchformer 
+            # The other term is related to features with batchformer. 
+            # Here, I just implement a very naive version for batchformer on Moco-V3 and report it in the paper.
+            # To some extent, both batchformer and image contrastive learning investigates the sample relationships.
+            # I am not familiar with contrastive learning. I guess there might be a better implementation for batchformer on moco
             loss = self.contrastive_loss(q1[:N], k2[:N]) + self.contrastive_loss(q1[:N], k2[N:]) + self.contrastive_loss(q1[N:], k2[:N]) + self.contrastive_loss(q1[N:], k2[N:]) + \
                    self.contrastive_loss(q2[:N], k1[:N]) + self.contrastive_loss(q2[:N], k1[N:]) + self.contrastive_loss(q2[N:], k1[:N]) + self.contrastive_loss(q2[N:], k1[N:])
             # emperically, all those strategies are valid and the model achieves slightly better performance when add_bf is 1.
