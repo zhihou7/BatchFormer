@@ -275,8 +275,8 @@ The backbone is ResNet-50. The training epoch is 50.
 </tr>
 <tr><td align="left">+BatchFormer</td>
 <td align="center">100</td>
-<td align="center"><b>69.6</b></td>
-    <td align="center"><a href="https://cloudstor.aarnet.edu.au/plus/s/IHxiZW3I8iiDS5u">download</a></td>
+<td align="center"><b>70.1</b></td>
+    <td align="center"><a href="https://unisydneyedu-my.sharepoint.com/:u:/g/personal/zhou9878_uni_sydney_edu_au/ETBR82PULkNMuUeyrxXZkVcBndgYylYnyRjmDQxOn_TUfQ?e=3rPRu4">download</a></td>
 </tbody></table>
 
 Here, we provide the pretrained MoCo-V3 model corresponding to [this strategy](https://github.com/zhihou7/BatchFormer/blob/cc7a060c6395cb1dc8a7c577df77f52a44deaf9d/moco-v3/moco/builder.py#L139).
