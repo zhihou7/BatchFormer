@@ -25,7 +25,7 @@ cp utils/download_embeddings.py $FOLDER/fast
 wget --show-progress -O $FOLDER/attr-ops-data.tar.gz https://www.cs.utexas.edu/~tushar/attribute-ops/attr-ops-data.tar.gz
 wget --show-progress -O $FOLDER/mitstates.zip http://wednesday.csail.mit.edu/joseph_result/state_and_transformation/release_dataset.zip
 wget --show-progress -O $FOLDER/utzap.zip http://vision.cs.utexas.edu/projects/finegrained/utzap50k/ut-zap50k-images.zip
-wget --show-progress -O $FOLDER/splits.tar.gz http://www.cs.cmu.edu/~spurushw/publication/compositional/compositional_split_natural.tar.gz
+wget --show-progress -O $FOLDER/splits.tar.gz https://www.senthilpurushwalkam.com/publication/compositional/compositional_split_natural.tar.gz
 wget --show-progress -O $FOLDER/cgqa.zip https://s3.mlcloud.uni-tuebingen.de/czsl/cgqa.zip
 
 echo "Data downloaded. Extracting files..."
