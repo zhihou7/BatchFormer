@@ -30,16 +30,15 @@ Model evaluation can be done using the following command:
 python main.py --cfg ./config/CIFAR10_LT/balanced_softmax_imba200.yaml --test
 ```
 
+We use debug=4 to stat the gradients for other images in the mini-batch.
 
 ## Citation
 ```bibtex
-@inproceedings{
-    Ren2020balms,
-    title={Balanced Meta-Softmax for Long-Tailed Visual Recognition},
-    author={Jiawei Ren and Cunjun Yu and Shunan Sheng and Xiao Ma and Haiyu Zhao and Shuai Yi and Hongsheng Li},
-    booktitle={Proceedings of Neural Information Processing Systems(NeurIPS)},
-    month = {Dec},
-    year={2020}
+@inproceedings{hou2022batch,
+    title={BatchFormer: Learning to Explore Sample Relationships for Robust Representation Learning},
+    author={Hou, Zhi and Yu, Baosheng and Tao, Dacheng},
+    booktitle={CVPR},
+    year={2022}
 }
 ```
 
