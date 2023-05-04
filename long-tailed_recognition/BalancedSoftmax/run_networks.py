@@ -348,6 +348,7 @@ class model ():
                 self.criterion_optimizer.zero_grad()
             self.loss.backward()
         elif self.debug == 4:
+            # Gradients for other images
             if not self.test_mode:
                 for model in self.networks.values():
                     model.eval()
