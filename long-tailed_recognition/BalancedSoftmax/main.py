@@ -44,7 +44,7 @@ parser.add_argument('--feat_type', type=str, default='cl2n')
 parser.add_argument('--dist_type', type=str, default='l2')
 parser.add_argument('--add_bt', type=int, default=0)
 parser.add_argument('--eval_batch', type=int, default=0)
-parser.add_argument('--debug', type=int, default=0)
+parser.add_argument('--debug', type=int, default=0) # debug=4 indicates stat gradient for other images
 parser.add_argument('--lr_scale', type=float, default=1.)
 # Learnable tau
 parser.add_argument('--val_as_train', default=False, action='store_true')
